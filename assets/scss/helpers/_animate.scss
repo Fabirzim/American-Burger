@@ -1,0 +1,171 @@
+// Sticky Header Animation
+@keyframes sticky-transition-show {
+  0% {
+      transform: translateY(-100%)
+  }
+
+  to {
+      transform: translateY(0)
+  }
+}
+
+@keyframes sticky-transition-hide {
+  0% {
+      transform: translateY(0)
+  }
+
+  to {
+      transform: translateY(-100%)
+  }
+}
+
+// Slide Down Animation
+@keyframes slideInDown{
+    from{
+        transform:translate3d(0,-100%,0);
+        visibility: visible;
+    }
+    to {
+            transform:translate3d(0,0,0)
+    }
+}
+.slideInDown{
+    animation-name:slideInDown;
+}
+
+// Circle Animation
+@keyframes circleHoverEffect {
+	0% {
+		opacity: 0.3;
+	}
+	40% {
+		opacity: 0.5;
+		box-shadow: 0 0 0 0.063rem rgba($secondary-color, .1), 0 0 0.313rem 0.313rem $secondary-color, 0 0 0 0.313rem rgba($secondary-color, .5);
+	}
+	100% {
+		box-shadow: 0 0 0 0.063rem rgba($secondary-color,0.1), 0 0 0.313rem 0.313rem $secondary-color, 0 0 0 0.313rem rgba($secondary-color,0.5);
+		transform: scale(1.3);
+		opacity: 0;
+	}
+}
+
+// Outline Border Animation
+@keyframes move1 {
+  0% {
+    height: 100%; 
+    bottom: 0;
+  }
+  54% {
+    height: 0; 
+    bottom: 100%;
+  }
+  55% {
+    height: 0; 
+    bottom: 0;
+  }
+  100% {
+    height: 100%; 
+    bottom: 0;
+  }
+}
+
+@keyframes move2 {
+  0% {
+    width: 0;
+    left: 0;
+  }
+  50% {
+    width: 100%; 
+    left: 0;
+  }
+  100% {
+    width: 0; 
+    left: 100%;
+  }
+}
+
+@keyframes move3 {
+  0% {
+    height: 100%; 
+    top: 0;
+  }
+  54% {
+    height: 0; 
+    top: 100%;
+  }
+  55% {
+    height: 0; 
+    top: 0;
+  }
+  100% {
+    height: 100%; 
+    top: 0;
+  }
+}
+
+@keyframes move4 {
+  0% {
+    width: 0; 
+    right: 0;
+  }
+  55% {
+    width: 100%; 
+    right: 0;
+  }
+  100% {
+    width: 0; 
+    right: 100%;
+  }
+}
+
+// Preloader Animation              
+
+@-webkit-keyframes animate {
+  0% {
+  -webkit-transform: perspective(160px);
+  }
+  50% {
+  -webkit-transform: perspective(160px) rotateY(-180deg);
+  }
+  100% {
+  -webkit-transform: perspective(160px) rotateY(-180deg) rotateX(-180deg);
+  }
+}
+@keyframes animate {
+  0% {
+  transform: perspective(160px) rotateX(0deg) rotateY(0deg);
+  -webkit-transform: perspective(160px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+  transform: perspective(160px) rotateX(-180deg) rotateY(0deg);
+  -webkit-transform: perspective(160px) rotateX(-180deg) rotateY(0deg);
+  }
+  100% {
+  transform: perspective(160px) rotateX(-180deg) rotateY(-180deg);
+  -webkit-transform: perspective(160px) rotateX(-180deg) rotateY(-180deg);
+  }
+}
+
+// Like Animation
+
+@keyframes like {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.3) rotate(15deg);
+  }
+  75% {
+    transform: scale(1.3) rotate(15deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+
+// Loading Animation    
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

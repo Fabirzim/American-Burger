@@ -1,0 +1,14 @@
+// Body Styles
+body {
+    // For Font Smoothing Styles
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;  
+
+    font-family: $default-font;
+    font-size: 14px;
+    line-height: 18px;
+    min-height: 100vh;
+    color: $primary-color;
+    background-color: #fefefe;
+}

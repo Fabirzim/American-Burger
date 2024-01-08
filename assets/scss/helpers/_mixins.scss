@@ -1,0 +1,412 @@
+// Font Face Mixin
+// @mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false) {
+//     @font-face {
+//         font-family: $font-family;
+//         font-weight: $weight;
+//         font-style: $style;
+
+//         @if $asset-pipeline==true {
+//             src: font-url('#{$file-path}.eot');
+//             src: font-url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
+//             font-url('#{$file-path}.woff') format('woff'),
+//             font-url('#{$file-path}.ttf') format('truetype');
+//         }
+
+//         @else {
+//             src: url('#{$file-path}.eot');
+//             src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
+//             url('#{$file-path}.woff') format('woff'),
+//             url('#{$file-path}.ttf') format('truetype');
+//         }
+//     }
+// }
+ 
+@mixin MQ($arg) {
+
+    // 320px - 374px
+    @if $arg==mobileXS {
+        @media only screen and (min-width: $mobile-xs) and (max-width: $mobile-s - 1) {
+            @content;
+        }
+    }
+
+    // 375px - 424px
+    @else if $arg==mobileS {
+        @media only screen and (min-width: $mobile-s) and (max-width: $mobile-m - 1) {
+            @content;
+        }
+    }
+
+    // 425px - 479px
+    @else if $arg==mobileM {
+        @media only screen and (min-width: $mobile-m) and (max-width: $mobile-l - 1) {
+            @content;
+        }
+    }
+
+    // 480px - 539px
+    @else if $arg==mobileL {
+        @media only screen and (min-width: $mobile-l) and (max-width: $mobile - 1) {
+            @content;
+        }
+    }
+
+    // 540px - 599px
+    @else if $arg==mobile {
+        @media only screen and (min-width: $mobile) and (max-width: $mobile-landscape - 1) {
+            @content;
+        }
+    }
+
+    // 320px - 600px
+    @else if $arg==xminiMobile {
+        @media only screen and (min-width: $mobile-xs) and (max-width: $mobile-landscape - 1) {
+            @content;
+        }
+    }
+
+    // 425px - 600px
+    @else if $arg==miniMobile {
+        @media only screen and (min-width: $mobile-m) and (max-width: $mobile-landscape - 1) {
+            @content;
+        }
+    }
+
+    // 600px - 766px
+    @else if $arg==mobileLandscape {
+        @media only screen and (min-width: $mobile-landscape) and (max-width: $tablet - 1) {
+            @content;
+        }
+    }
+
+    // 767px - 991px
+    @else if $arg==tablet {
+        @media only screen and (min-width: $tablet) and (max-width: $tablet-landscape - 1) {
+            @content;
+        }
+    }
+
+    // 992px - 1199px
+    @else if $arg==tabletLandscape {
+        @media only screen and (min-width: $tablet-landscape) and (max-width: $laptop) {
+            @content;
+        }
+    }
+
+    // 992px - 1160px
+    @else if $arg==tabletLandscape-container {
+        @media only screen and (min-width: $tablet-landscape) and (max-width: $laptop-container) {
+            @content;
+        }
+    }
+
+    // 1200px - 1440px
+    @else if $arg==laptop {
+        @media only screen and (min-width: $laptop + 1) and (max-width: $laptop-l) {
+            @content;
+        }
+    }
+
+    // min 320px
+    @else if $arg==mobileXS-Max {
+        @media only screen and (min-width: $mobile-xs) {
+            @content;
+        }
+    }
+
+    // min 375px
+    @else if $arg==mobileS-Max {
+        @media only screen and (min-width: $mobile-s) {
+            @content;
+        }
+    }
+
+    // min 425px
+    @else if $arg==mobileM-Max {
+        @media only screen and (min-width: $mobile-m) {
+            @content;
+        }
+    }
+
+    // min 480px
+    @else if $arg==mobileL-Max {
+        @media only screen and (min-width: $mobile-l) {
+            @content;
+        }
+    }
+
+    // min 540px
+    @else if $arg==mobile-Max {
+        @media only screen and (min-width: $mobile) {
+            @content;
+        }
+    }
+
+    // min 600px
+    @else if $arg==mobileLandscape-Max {
+        @media only screen and (min-width: $mobile-landscape) {
+            @content;
+        }
+    }
+
+    // min 767px
+    @else if $arg==tablet-Max {
+        @media only screen and (min-width: $tablet) {
+            @content;
+        }
+    }
+
+    // min 820px
+    @else if $arg==tabletContainer-Max {
+        @media only screen and (min-width: $tablet-container) {
+            @content;
+        }
+    }
+
+    // min 992px
+    @else if $arg==tabletLandscape-Max {
+        @media only screen and (min-width: $tablet-landscape) {
+            @content;
+        }
+    }
+
+    // min 1160px
+    @else if $arg==laptopContainer-Max {
+        @media only screen and (min-width: $laptop-container) {
+            @content;
+        }
+    }
+
+    // min 1199px
+    @else if $arg==laptop-Max {
+        @media only screen and (min-width: $laptop) {
+            @content;
+        }
+    }
+
+    // min 1440px
+    @else if $arg==laptopL-Max {
+        @media only screen and (min-width: $laptop-l) {
+            @content;
+        }
+    }
+
+    // max 320px
+    @else if $arg==mobileXS-Min {
+        @media only screen and (max-width: $mobile-xs) {
+            @content;
+        }
+    }
+
+    // max 375px
+    @else if $arg==mobileS-Min {
+        @media only screen and (max-width: $mobile-s) {
+            @content;
+        }
+    }
+
+    // max 425px
+    @else if $arg==mobileM-Min {
+        @media only screen and (max-width: $mobile-m) {
+            @content;
+        }
+    }
+
+    // max 480px
+    @else if $arg==mobileL-Min {
+        @media only screen and (max-width: $mobile-l) {
+            @content;
+        }
+    }
+
+    // max 540px
+    @else if $arg==mobile-Min {
+        @media only screen and (max-width: $mobile) {
+            @content;
+        }
+    }
+
+    // max 600px
+    @else if $arg==mobileLandscape-Min {
+        @media only screen and (max-width: $mobile-landscape) {
+            @content;
+        }
+    }
+
+    // max 767px
+    @else if $arg==tablet-Min {
+        @media only screen and (max-width: $tablet) {
+            @content;
+        }
+    }
+
+    // max 992px
+    @else if $arg==tabletLandscape-Min {
+        @media only screen and (max-width: $tablet-landscape) {
+            @content;
+        }
+    }
+
+    // min 1160px
+    @else if $arg==laptopContainer-Min {
+        @media only screen and (max-width: $laptop-container) {
+            @content;
+        }
+    }
+
+    // max 1199px
+    @else if $arg==laptop-Min {
+        @media only screen and (max-width: $laptop) {
+            @content;
+        }
+    }
+
+    // max 1320px
+    @else if $arg==laptopM-Min {
+        @media only screen and (max-width: $laptop-m) {
+            @content;
+        }
+    }
+
+    // max 1440px
+    @else if $arg==laptopL-Min {
+        @media only screen and (max-width: $laptop-l) {
+            @content;
+        }
+    }
+}
+
+// Horizontal and Vertical Flex Mixin
+@mixin flexCenterBetween() {
+    display: flex!important;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flexJustifyBetween() {
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin flexJustifyCenter() {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin flexCenterJustifyEnd() {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@mixin flexEndJustifyCenter() {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+@mixin flexAlignEndBetween() {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+@mixin flexAlignStartBetween() {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+@mixin flexJustifyEnd() {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@mixin flexAlignCenter() {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flexAlignEnd() {
+    display: flex;
+    align-items: flex-end;
+}
+
+@mixin flexColumn() {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flexColumnAlignCenter() {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@mixin flexColumnJustifyBetween() {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
+
+@mixin flexColumnCenter() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@mixin flexColumnStartBetween() {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+@mixin flexCenter() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Transition 0.3s Mixin
+@mixin transition3S {
+    transition: all .3s linear;
+}
+
+// Border Radius Mixin
+@mixin borderRadius50 {
+    border-radius: 50%;
+}
+
+@mixin borderRadius30 {
+    border-radius: 30px;
+}
+
+@mixin borderRadius10 {
+    border-radius: 10px;
+}
+
+// Text Limit Mixin
+@mixin textLimit {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+// antialiasing mode font rendering
+
+@mixin font-smoothing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// clearfix
+
+@mixin clearfix {
+    &::after {
+        clear: both;
+        content: "";
+        display: block;
+    }
+}

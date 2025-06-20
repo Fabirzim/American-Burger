@@ -24,7 +24,39 @@
 	[END INDEX ]
 
 ================================================================================*/
+// let cesta = [];
 
+// function adicionarACesta(nome, preco) {
+//     cesta.push({ nome, preco });
+//     atualizarCesta();
+// }
+
+// function atualizarCesta() {
+//     const cestaDiv = document.getElementById('cesta');
+//     cestaDiv.innerHTML = '';
+
+//     if (cesta.length === 0) {
+//         cestaDiv.innerHTML = '<p>Nenhum item na cesta.</p>';
+//         return;
+//     }
+
+//     let total = 0;
+//     cesta.forEach(item => {
+//         cestaDiv.innerHTML += `<p>${item.nome} - R$ ${item.preco.toFixed(2)}</p>`;
+//         total += item.preco;
+//     });
+//     cestaDiv.innerHTML += `<p>Total: R$ ${total.toFixed(2)}</p>`;
+// }
+
+// function finalizarPedido() {
+//     if (cesta.length === 0) {
+//         alert('A cesta está vazia!');
+//         return;
+//     }
+//     alert('Pedido finalizado com sucesso!');
+//     cesta = [];
+//     atualizarCesta();
+// }
 
 (function ($) {
     "use strict";
@@ -273,3 +305,142 @@
 
 
 })(jQuery);
+
+
+
+
+
+ const cesta = [];
+
+    function adicionarACesta(nome, preco) {
+      const existente = cesta.find(item => item.nome === nome);
+      if (existente) {
+        existente.qtd++;
+      } else {
+        cesta.push({ nome, preco, qtd: 1 });
+      }
+      renderizarCesta();
+    }
+
+    function renderizarCesta() {
+      const container = document.getElementById("cestaContainer");
+      container.innerHTML = "";
+
+      let total = 0;
+
+      cesta.forEach((item, index) => {
+        const subtotal = item.qtd * item.preco;
+        total += subtotal;
+
+        const itemHTML = `
+          <div data-index="${index}">
+            ${item.qtd} x ${item.nome} - R$ ${item.preco.toFixed(2)} = R$ ${subtotal.toFixed(2)}
+            <button class="btn-aumentar">+</button>
+            <button class="btn-diminuir">-</button>
+            <button class="btn-remover">Remover</button>
+          </div>
+        `;
+        container.innerHTML += itemHTML;
+      });
+
+      container.innerHTML += `<p><strong>Total: R$ ${total.toFixed(2)}</strong></p>`;
+      document.getElementById("finalizarPedidoBtn").style.display = cesta.length > 0 ? "inline-block" : "none";
+    }
+
+    document.getElementById("cestaContainer").addEventListener("click", function (event) {
+      const el = event.target;
+      const itemDiv = el.closest("div[data-index]");
+      if (!itemDiv) return;
+      const index = parseInt(itemDiv.getAttribute("data-index"));
+
+      if (el.classList.contains("btn-aumentar")) {
+        cesta[index].qtd++;
+      } else if (el.classList.contains("btn-diminuir")) {
+        cesta[index].qtd--;
+        if (cesta[index].qtd <= 0) cesta.splice(index, 1);
+      } else if (el.classList.contains("btn-remover")) {
+        cesta.splice(index, 1);
+      }
+
+      renderizarCesta();
+    });
+
+    function finalizarPedido() {
+      if (cesta.length === 0) {
+        alert("Sua cesta está vazia!");
+        return;
+      }
+
+      const nomeCliente = prompt("Digite seu nome:");
+      if (!nomeCliente) return;
+
+     fetch("enviar_pedido.php", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    nomeCliente: "Fabiano",
+    itens: [
+      { nome: "X-Bacon", qtd: 2, preco: 13 },
+      { nome: "Refrigerante", qtd: 1, preco: 5 }
+    ]
+  })
+});
+    }
+
+
+    
+
+
+let carrinho = [];
+let total = 0;
+
+function adicionar(item, preco) {
+  const existente = carrinho.find(i => i.item === item);
+  if (existente) {
+    existente.qtd += 1;
+  } else {
+    carrinho.push({ item, preco, qtd: 1 });
+  }
+  atualizarCarrinho();
+}
+
+function remover(item) {
+  const index = carrinho.findIndex(i => i.item === item);
+  if (index !== -1) {
+    if (carrinho[index].qtd > 1) {
+      carrinho[index].qtd -= 1;
+    } else {
+      carrinho.splice(index, 1);
+    }
+  }
+  atualizarCarrinho();
+}
+
+function atualizarCarrinho() {
+  const lista = document.getElementById('lista');
+  lista.innerHTML = '';
+  total = 0;
+
+  carrinho.forEach(i => {
+    const li = document.createElement('li');
+    li.innerHTML = `${i.qtd}x ${i.item} - R$ ${(i.preco * i.qtd).toFixed(2)}
+    <button onclick="remover('${i.item}')">Remover</button>`;
+    lista.appendChild(li);
+    total += i.preco * i.qtd;
+  });
+
+  document.getElementById('total').textContent = total.toFixed(2);
+}
+
+function montarMensagem() {
+  let mensagem = 'Pedido de Lanches Gourmet:\n\n';
+  carrinho.forEach(i => {
+    mensagem += `${i.qtd}x ${i.item} - R$ ${(i.preco * i.qtd).toFixed(2)}\n`;
+  });
+  mensagem += `\nTotal: R$ ${total.toFixed(2)}\n`;
+
+  document.getElementById('pedidoFinal').value = mensagem;
+  return true;
+}
+
+

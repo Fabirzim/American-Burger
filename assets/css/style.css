@@ -47,6 +47,13 @@ html {
     overflow-y: scroll
 }
 
+.produto {
+    margin: 10px;
+}
+.cesta {
+    margin-top: 20px;
+}
+
 .opacity-0 {
     opacity: 0
 }
@@ -252,6 +259,24 @@ strong {
     font-size: 25px;
     margin-bottom: 28px;
     font-weight: 500
+}
+
+#btn_pedido{
+    display: flex;
+    justify-content: center;
+ 
+}
+
+#btn_pedido > a{
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+   width: 280px;
+margin-bottom: -100px;
+    height: 55px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    
 }
 
 .section-subtitle {
@@ -555,10 +580,28 @@ table th {
 }
 
 footer {
-    margin-top: 10px;
-    background: url('../img/1350x540.jpg') no-repeat center center;
-    background-size: cover;
-    position: relative
+  margin-top: 10px;
+  background: url('../img/1350x540.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  padding: 40px 20px; /* adiciona espaço interno para conteúdo */
+  color: #fff; /* caso tenha texto em cima da imagem */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  footer {
+    background-position: center top;
+    background-size: contain; /* ou 'cover' se quiser preencher */
+    padding: 30px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    background-size: cover; /* preenche a área */
+    background-position: center center;
+  }
 }
 
 footer:after {
@@ -726,6 +769,12 @@ footer:after {
 
 .footer-social a:focus {
     color: #212121
+}
+
+#american {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .banner {
@@ -1586,7 +1635,42 @@ footer:after {
     }
 }
 
+
 .scroll-up {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.scroll-up__icon img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 3px solid #25D366;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    animation: pulsar 1.5s infinite;
+    transition: transform 0.3s;
+}
+
+@keyframes pulsar {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+
+/* .scroll-up {
     position: fixed;
     right: 50px;
     bottom: 100px;
@@ -1597,13 +1681,13 @@ footer:after {
     width: 45px;
     height: 45px;
     min-width: 45px;
-    background-color: #c10100;
+    background-color: #00c13a;
     -webkit-border-radius: 50%;
     border-radius: 50%;
     -webkit-transition: all .3s ease-out;
     -o-transition: all .3s ease-out;
     transition: all .3s ease-out
-}
+} */
 
 .scroll-up:hover {
     -webkit-box-shadow: rgba(153, 1, 0, .5);
@@ -3472,3 +3556,137 @@ footer:after {
         max-width: 1080px
     }
 }
+
+  .cesta-item {
+      margin: 5px 0;
+    }
+    .cesta-item button {
+      margin-left: 5px;
+    }
+    .button {
+      padding: 5px 10px;
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    * {
+  outline: 1px solid rgba(218, 23, 23, 0.3); /* borda leve em todos os elementos */
+}
+
+
+
+/* Responsividade para tablets */
+@media (max-width: 768px) {
+  .footer-logo span {
+    font-size: 20px;
+  }
+}
+
+/* Responsividade para celulares */
+@media (max-width: 480px) {
+  .footer-logo {
+    flex-direction: column; /* imagem acima, texto abaixo */
+    text-align: center;
+  }
+
+  .footer-logo span {
+    font-size: 18px;
+    white-space: normal; /* permite quebrar em telas bem pequenas */
+  }
+}
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background: #f8f8f8;
+}
+
+h1, h2 {
+  color: #d35400;
+}
+
+#cardapio {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.item {
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  width: 220px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+button {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+button:hover {
+  background: #1e8449;
+}
+
+form input, form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  height: 150px;
+}
+
+#carrinho ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#carrinho li {
+  background: white;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+  #cardapio {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .item {
+    width: 90%;
+  }
+}
+
+form input, form textarea, form select {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+

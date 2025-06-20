@@ -131,6 +131,10 @@ pre code {
     padding: 40px;
 }
 
+#pedidos{
+    display: flex;
+}
+
 
 #site-body .section {
     border-bottom: 2px solid #e4e4e4;
@@ -259,6 +263,11 @@ pre code {
 .clearfix:after {
     content: " ";
     display: table;
+}
+
+
+#navbar{
+    margin-right: 40px;
 }
 
 .clearfix:after {

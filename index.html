@@ -148,7 +148,7 @@
     <!-- Banner End -->
 
     <!-- Banner Grid Start -->
-    <div class="banner-grid">
+    <!-- <div class="banner-grid">
         <div class="banner-grid-row">
             <div class="banner-grid-column">
                 <a href="" title="" class="banner-grid-big">
@@ -176,14 +176,16 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Banner Grid End -->
      
-<div  id="btn_pedido">
+<!-- <div  id="btn_pedido">
     <a href="index2.html" class="button">FAZER PEDIDO AQUI</a>
-</div>
+</div> -->
 
     <!-- Menu Slider Start -->
+
+    
     <section class="section" id="menu">
         <div class="section-header text-center">
             <h5 class="section-label label">Hambúrguer Sempre Saboroso</h5>
@@ -205,7 +207,7 @@
                     <p class="menu-slider-item-subtitle">Hamburguer tradicional + Queijo + Bacon + Alface + Tomate
                     </p>
                     <!-- <a href="#contact" class="page-scroll button">R$ 13,00</a> -->
-                   <button onclick="adicionar('Refrigerante', 5)">Adicionar</button>
+                   <button onclick="adicionar('xbacon', 25)">Adicionar</button>
                 </div>
             </div>
             <div class="menu-slider-item">
@@ -217,7 +219,8 @@
                     <h4 class="menu-slider-item-title">X EGG TRADICIONAL</h4>
                     <p class="menu-slider-item-subtitle">Hamburguer tradicional + Queijo + Ovo + Alface + Tomate
                     </p>
-                    <a href="#contact" class="page-scroll button">R$ 13,00</a>
+                    <!-- <a href="#contact" class="page-scroll button">R$ 13,00</a> -->
+                     <button onclick="adicionar('xegg', 22)">Adicionar</button>
                 </div>
             </div>
             <div class="menu-slider-item">
@@ -229,7 +232,8 @@
                     <h4 class="menu-slider-item-title">X-MILHO TRADICIONAL</h4>
                     <p class="menu-slider-item-subtitle">Hamburguer tradicional + Queijo + Milho + Alface + Tomate
                     </p>
-                    <a href="#contact" class="page-scroll button">R$ 13,00</a>
+                    <!-- <a href="#contact" class="page-scroll button">R$ 13,00</a> -->
+                     <button onclick="adicionar('x-milho', 30)">Adicionar</button>
                 </div>
             </div>
             <div class="menu-slider-item">
@@ -241,7 +245,8 @@
                     <h4 class="menu-slider-item-title">X-SALADA CASEIRO</h4>
                     <p class="menu-slider-item-subtitle">Hamburguer caseiro + Queijo + Alface + Tomate
                     </p>
-                    <a href="#contact" class="page-scroll button">R$ 17,00</a>
+                    <!-- <a href="#contact" class="page-scroll button">R$ 17,00</a> -->
+                     <button onclick="adicionar('x-salada', 20)">Adicionar</button>
                 </div>
             </div>
             <div class="menu-slider-item">
@@ -253,7 +258,8 @@
                     <h4 class="menu-slider-item-title">X-BACON CASEIRO</h4>
                     <p class="menu-slider-item-subtitle">Hamburguer caseiro + Queijo + Bacon + Alface + Tomate
                     </p>
-                    <a href="#contact" class="page-scroll button">R$ 20,00</a>
+                    <!-- <a href="#contact" class="page-scroll button">R$ 20,00</a> -->
+                     <button onclick="adicionar('x-tudo', 40)">Adicionar</button>
                 </div>
             </div>
             <div class="menu-slider-item">
@@ -265,12 +271,48 @@
                     <h4 class="menu-slider-item-title">X-ESPECIAL CASEIRO</h4>
                     <p class="menu-slider-item-subtitle">2 Hambugueres caseiro + Queijo + Bacon + Alface + Tomate
                     </p>
-                    <a href="#contact" class="page-scroll button">R$ 25,00</a>
+                    <!-- <a href="#contact" class="page-scroll button">R$ 25,00</a> -->
+                     <button onclick="adicionar('x-especial', 30)">Adicionar</button>
                 </div>
             </div>
         </div>
+        
     </section>
     <!-- Menu Slider End -->
+
+    
+    <section id="carrinho">
+        <h2>🛒 Pedidos</h2>
+        <ul id="lista"></ul>
+        <p id="valor_resumo"><strong>Total: R$ <span id="total">0.00</span></strong></p>
+        <p><strong>VALOR DA ENTREGA <span>R$ 3.00 JÁ ADICIONADO NO PEDIDO TOTAL</span></strong></p>
+        <button onclick="limparCarrinho()">🗑️ Limpar Carrinho</button>
+       <!-- <button id="btn_red" onclick="window.location.href='index.html'">Voltar Início</button> -->
+    </section>
+
+    <section id="formulario">
+        <!-- <h2>📋 Dados de Entrega:</h2>
+        <form action="enviar.php" method="POST" onsubmit="return montarMensagem()">
+            <input type="text" name="nome" placeholder="Seu Nome" required>
+            <input type="text" name="telefone" placeholder="Telefone" required>
+            <input type="text" name="rua" placeholder="Rua" required>
+            <input type="text" name="numero" placeholder="Número" required>
+            <input type="text" name="bairro" placeholder="Bairro" required>
+            <input type="text" name="complemento" placeholder="Complemento"> -->
+<!-- 
+            <label for="pagamento">Forma de Pagamento:</label>
+            <select name="pagamento" id="pagamento" required>
+                <option value="" disabled selected>Escolha uma opção</option>
+                <option value="Cartão">💳 Cartão</option>
+                <option value="Dinheiro">💵 Dinheiro</option>
+                <option value="Pix">🔥 Pix</option>
+            </select>
+
+            <textarea id="pedidoFinal" name="pedido" placeholder="Seu pedido aparecerá aqui" readonly></textarea> -->
+
+            <button id="btn_red"type="submit" onclick="window.location.href='index2.html'">📧 Finalizar o pedido</button>
+        <!-- </form> -->
+    </section>
 
     <!-- Events Start -->
     <section class="section" id="events">
@@ -519,6 +561,8 @@
     <script
         src="https://api-maps.yandex.ru/2.1/?apikey=pdct.1.1.20181030T175834Z.133bc6bb41576943.2897484581a2a12fea17740a34279c270c29ac48&lang=en_US"></script>
     <script src="assets/js/main.js"></script>
+
+    <script src="assets/js/script.js"></script>
 
 </body>
 

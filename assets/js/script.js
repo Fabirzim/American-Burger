@@ -62,88 +62,94 @@
 
 
 
+let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+let total = 0;
+const entrega = 3.00;
 
+atualizarCarrinho();
 
- let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-        let total = 0;
-        const entrega = 3.00;
+// ➕ Adicionar item
+function adicionar(item, preco) {
+    const existente = carrinho.find(i => i.item === item);
+    if (existente) {
+        existente.qtd += 1;
+    } else {
+        carrinho.push({ item, preco, qtd: 1 });
+    }
+    salvarCarrinho();
+    atualizarCarrinho();
+}
 
-        atualizarCarrinho();
-
-        function adicionar(item, preco) {
-            const existente = carrinho.find(i => i.item === item);
-            if (existente) {
-                existente.qtd += 1;
-            } else {
-                carrinho.push({ item, preco, qtd: 1 });
-            }
-            salvarCarrinho();
-            atualizarCarrinho();
+// ➖ Remover item
+function remover(item) {
+    const index = carrinho.findIndex(i => i.item === item);
+    if (index !== -1) {
+        if (carrinho[index].qtd > 1) {
+            carrinho[index].qtd -= 1;
+        } else {
+            carrinho.splice(index, 1);
         }
+    }
+    salvarCarrinho();
+    atualizarCarrinho();
+}
 
-        function remover(item) {
-            const index = carrinho.findIndex(i => i.item === item);
-            if (index !== -1) {
-                if (carrinho[index].qtd > 1) {
-                    carrinho[index].qtd -= 1;
-                } else {
-                    carrinho.splice(index, 1);
-                }
-            }
-            salvarCarrinho();
-            atualizarCarrinho();
-        }
+// 💾 Salvar no LocalStorage
+function salvarCarrinho() {
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+}
 
-        function salvarCarrinho() {
-            localStorage.setItem('carrinho', JSON.stringify(carrinho));
-        }
+// 🔄 Atualizar carrinho e textarea automaticamente
+function atualizarCarrinho() {
+    const lista = document.getElementById('lista');
+    lista.innerHTML = '';
+    total = 0;
 
-        function atualizarCarrinho() {
-            const lista = document.getElementById('lista');
-            lista.innerHTML = '';
-            total = 0;
+    let mensagem = '🍔 Pedido de Lanches Gourmet:\n\n';
 
-            carrinho.forEach(i => {
-                const li = document.createElement('li');
-                li.innerHTML = `${i.qtd}x ${i.item} - R$ ${(i.preco * i.qtd).toFixed(2)}
-                <button onclick="remover('${i.item}')">Remover</button>`;
-                lista.appendChild(li);
-                total += i.preco * i.qtd;
-            });
+    carrinho.forEach(i => {
+        const li = document.createElement('li');
+        li.innerHTML = `${i.qtd}x ${i.item} - R$ ${(i.preco * i.qtd).toFixed(2)}
+        <button onclick="remover('${i.item}')">Remover</button>`;
+        lista.appendChild(li);
 
-            const totalFinal = total + entrega;
-            document.getElementById('total').textContent = totalFinal.toFixed(2);
-        }
+        total += i.preco * i.qtd;
+        mensagem += `${i.qtd}x ${i.item} - R$ ${(i.preco * i.qtd).toFixed(2)}\n`;
+    });
 
-        function montarMensagem() {
-            let mensagem = '🍔 Pedido de Lanches Gourmet:\n\n';
+    const totalFinal = total + entrega;
 
-            carrinho.forEach(i => {
-                mensagem += `${i.qtd}x ${i.item} - R$ ${(i.preco * i.qtd).toFixed(2)}\n`;
-            });
+    mensagem += `\n📦 Entrega: R$ ${entrega.toFixed(2)}\n`;
+    mensagem += `💰 Total: R$ ${totalFinal.toFixed(2)}\n`;
 
-            mensagem += `\n📦 Entrega: R$ ${entrega.toFixed(2)}\n`;
-            mensagem += `💰 Total: R$ ${(total + entrega).toFixed(2)}\n\n`;
+    document.getElementById('total').textContent = totalFinal.toFixed(2);
+    document.getElementById('pedidoFinal').value = mensagem;
+}
 
-            const nome = document.querySelector('input[name="nome"]').value;
-            const telefone = document.querySelector('input[name="telefone"]').value;
-            const rua = document.querySelector('input[name="rua"]').value;
-            const numero = document.querySelector('input[name="numero"]').value;
-            const bairro = document.querySelector('input[name="bairro"]').value;
-            const complemento = document.querySelector('input[name="complemento"]').value;
-            const pagamento = document.querySelector('select[name="pagamento"]').value;
+// 📝 Montar mensagem final com dados do cliente (para enviar)
+function montarMensagem() {
+    let mensagem = document.getElementById('pedidoFinal').value;
 
-            mensagem += `📍 Entrega para: ${nome}, Tel: ${telefone}\n`;
-            mensagem += `Endereço: Rua ${rua}, Nº ${numero}, Bairro ${bairro}, ${complemento}\n`;
-            mensagem += `💳 Pagamento: ${pagamento}\n`;
+    const nome = document.querySelector('input[name="nome"]').value;
+    const telefone = document.querySelector('input[name="telefone"]').value;
+    const rua = document.querySelector('input[name="rua"]').value;
+    const numero = document.querySelector('input[name="numero"]').value;
+    const bairro = document.querySelector('input[name="bairro"]').value;
+    const complemento = document.querySelector('input[name="complemento"]').value;
+    const pagamento = document.querySelector('select[name="pagamento"]').value;
 
-            document.getElementById('pedidoFinal').value = mensagem;
+    mensagem += `\n📍 Entrega para: ${nome}, Tel: ${telefone}\n`;
+    mensagem += `Endereço: Rua ${rua}, Nº ${numero}, Bairro ${bairro}, ${complemento}\n`;
+    mensagem += `💳 Pagamento: ${pagamento}\n`;
 
-            return true;
-        }
+    document.getElementById('pedidoFinal').value = mensagem;
 
-        function limparCarrinho() {
-            carrinho = [];
-            salvarCarrinho();
-            atualizarCarrinho();
-        }
+    return true;
+}
+
+// 🗑️ Limpar carrinho
+function limparCarrinho() {
+    carrinho = [];
+    salvarCarrinho();
+    atualizarCarrinho();
+}

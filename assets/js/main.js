@@ -391,56 +391,54 @@
     
 
 
-let carrinho = [];
-let total = 0;
+// let carrinho = [];
+// let total = 0;
 
-function adicionar(item, preco) {
-  const existente = carrinho.find(i => i.item === item);
-  if (existente) {
-    existente.qtd += 1;
-  } else {
-    carrinho.push({ item, preco, qtd: 1 });
-  }
-  atualizarCarrinho();
-}
+// function adicionar(item, preco) {
+//   const existente = carrinho.find(i => i.item === item);
+//   if (existente) {
+//     existente.qtd += 1;
+//   } else {
+//     carrinho.push({ item, preco, qtd: 1 });
+//   }
+//   atualizarCarrinho();
+// }
 
-function remover(item) {
-  const index = carrinho.findIndex(i => i.item === item);
-  if (index !== -1) {
-    if (carrinho[index].qtd > 1) {
-      carrinho[index].qtd -= 1;
-    } else {
-      carrinho.splice(index, 1);
-    }
-  }
-  atualizarCarrinho();
-}
+// function remover(item) {
+//   const index = carrinho.findIndex(i => i.item === item);
+//   if (index !== -1) {
+//     if (carrinho[index].qtd > 1) {
+//       carrinho[index].qtd -= 1;
+//     } else {
+//       carrinho.splice(index, 1);
+//     }
+//   }
+//   atualizarCarrinho();
+// }
 
-function atualizarCarrinho() {
-  const lista = document.getElementById('lista');
-  lista.innerHTML = '';
-  total = 0;
+// function atualizarCarrinho() {
+//   const lista = document.getElementById('lista');
+//   lista.innerHTML = '';
+//   total = 0;
 
-  carrinho.forEach(i => {
-    const li = document.createElement('li');
-    li.innerHTML = `${i.qtd}x ${i.item} - R$ ${(i.preco * i.qtd).toFixed(2)}
-    <button onclick="remover('${i.item}')">Remover</button>`;
-    lista.appendChild(li);
-    total += i.preco * i.qtd;
-  });
+//   carrinho.forEach(i => {
+//     const li = document.createElement('li');
+//     li.innerHTML = `${i.qtd}x ${i.item} - R$ ${(i.preco * i.qtd).toFixed(2)}
+//     <button onclick="remover('${i.item}')">Remover</button>`;
+//     lista.appendChild(li);
+//     total += i.preco * i.qtd;
+//   });
 
-  document.getElementById('total').textContent = total.toFixed(2);
-}
+//   document.getElementById('total').textContent = total.toFixed(2);
+// }
 
-function montarMensagem() {
-  let mensagem = 'Pedido de Lanches Gourmet:\n\n';
-  carrinho.forEach(i => {
-    mensagem += `${i.qtd}x ${i.item} - R$ ${(i.preco * i.qtd).toFixed(2)}\n`;
-  });
-  mensagem += `\nTotal: R$ ${total.toFixed(2)}\n`;
+// function montarMensagem() {
+//   let mensagem = 'Pedido de Lanches Gourmet:\n\n';
+//   carrinho.forEach(i => {
+//     mensagem += `${i.qtd}x ${i.item} - R$ ${(i.preco * i.qtd).toFixed(2)}\n`;
+//   });
+//   mensagem += `\nTotal: R$ ${total.toFixed(2)}\n`;
 
-  document.getElementById('pedidoFinal').value = mensagem;
-  return true;
-}
-
-
+//   document.getElementById('pedidoFinal').value = mensagem;
+//   return true;
+// }

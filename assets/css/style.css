@@ -103,9 +103,32 @@ hr {
     margin: 15px 0
 }
 
+#valor_resumo{
+    font-size: 20px;
+   
+}
+
+.container_waffle{
+    margin-top: 100px;
+}
+
+#btn_red{
+    background-color: red;
+}
+
 img {
     max-width: 100%;
     height: auto
+}
+
+#cardapio > h2{
+    font-size: 30px;
+}
+
+#pedido_gourmet{
+    display: flex;
+    justify-content: center;
+    color:rgb(207, 1, 1)
 }
 
 .cursor-pointer {

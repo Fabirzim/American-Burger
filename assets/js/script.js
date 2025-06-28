@@ -60,8 +60,6 @@
 
 
 
-
-
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 let total = 0;
 const entrega = 3.00;
@@ -144,10 +142,13 @@ function montarMensagem() {
 
     document.getElementById('pedidoFinal').value = mensagem;
 
+    // 🗑️ Limpa o carrinho após finalizar
+    limparCarrinho();
+
     return true;
 }
 
-// 🗑️ Limpar carrinho
+// 🗑️ Limpar carrinho manual (se desejar)
 function limparCarrinho() {
     carrinho = [];
     salvarCarrinho();

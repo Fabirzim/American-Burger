@@ -155,42 +155,61 @@
 // }
 
 
+let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+let total = parseFloat(localStorage.getItem('total')) || 3.00;
 
-let carrinho = [];
-let total = 3.00; // já inclui o valor da entrega
+// Salva no localStorage
+function salvarCarrinho() {
+  localStorage.setItem('carrinho', JSON.stringify(carrinho));
+  localStorage.setItem('total', total.toString());
+}
 
+// Adiciona item ao carrinho
 function adicionar(item, preco) {
   carrinho.push({ item, preco });
   total += preco;
+  salvarCarrinho();
   atualizarCarrinho();
+  alert('✅ Item adicionado!');
 }
 
+// Atualiza visual do carrinho
 function atualizarCarrinho() {
   const lista = document.getElementById('lista');
-  lista.innerHTML = '';
+  if (lista) {
+    lista.innerHTML = '';
+    carrinho.forEach(i => {
+      const li = document.createElement('li');
+      li.textContent = `${i.item} - R$ ${i.preco.toFixed(2).replace('.', ',')}`;
+      lista.appendChild(li);
+    });
+  }
 
-  carrinho.forEach(i => {
-    const li = document.createElement('li');
-    li.textContent = `${i.item} - R$ ${i.preco.toFixed(2).replace('.', ',')}`;
-    lista.appendChild(li);
-  });
+  const totalEl = document.getElementById('total');
+  if (totalEl) {
+    totalEl.textContent = total.toFixed(2).replace('.', ',');
+  }
 
-  document.getElementById('total').textContent = total.toFixed(2).replace('.', ',');
-
-  const textoPedido = gerarMensagem();
-  document.getElementById('pedidoFinal').value = textoPedido;
+  const pedidoFinal = document.getElementById('pedidoFinal');
+  if (pedidoFinal) {
+    pedidoFinal.value = gerarMensagem();
+  }
 }
 
+// Limpa o carrinho
 function limparCarrinho() {
   carrinho = [];
-  total = 3.00; // sempre começa com o valor da entrega
+  total = 3.00;
+  salvarCarrinho();
   atualizarCarrinho();
-  document.getElementById('pedidoFinal').value = '';
+
+  const pedidoFinal = document.getElementById('pedidoFinal');
+  if (pedidoFinal) pedidoFinal.value = '';
 }
 
+// Gera a mensagem do pedido
 function gerarMensagem() {
   let mensagem = `*Pedido American Burguer*\n\n`;
-
   carrinho.forEach(i => {
     mensagem += `🍔 ${i.item} - R$ ${i.preco.toFixed(2).replace('.', ',')}\n`;
   });
@@ -200,6 +219,7 @@ function gerarMensagem() {
   return mensagem;
 }
 
+// Finaliza o pedido e abre o WhatsApp
 function montarMensagem() {
   const nome = document.querySelector('input[name="nome"]').value;
   const telefone = document.querySelector('input[name="telefone"]').value;
@@ -217,11 +237,15 @@ function montarMensagem() {
   mensagem += `📍 Endereço: ${rua}, ${numero}, ${bairro} ${complemento ? '- ' + complemento : ''}\n`;
   mensagem += `💳 Pagamento: ${pagamento}`;
 
-  // Gera o link do WhatsApp
-  const numeroWhatsApp = "5519995856800"; // <-- Altere aqui pelo seu número com DDD
+  const numeroWhatsApp = "5519995856800"; // Altere conforme seu número
   const link = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
-
-  // Redireciona para o WhatsApp
   window.open(link, "_blank");
-  return false; // impede envio tradicional do formulário
+
+  // 🧹 Limpa o carrinho após envio
+  limparCarrinho();
+
+  return false; // Impede envio padrão do form
 }
+
+// Carrega carrinho salvo ao abrir página
+document.addEventListener("DOMContentLoaded", atualizarCarrinho);

@@ -22,7 +22,40 @@
 
 <body>
 
-    <h1 id="pedido_gourmet">🍔 Lanches Gourmet - Faça seu Pedido</h1>
+     <section id="carrinho">
+    <h2>🛒 Pedidos</h2>
+    <ul id="lista"></ul>
+    <p id="valor_resumo"><strong>Total: R$ <span id="total">3.00</span></strong></p>
+    <p><strong>VALOR DA ENTREGA <span>R$ 3.00 JÁ ADICIONADO NO PEDIDO TOTAL</span></strong></p>
+    <button onclick="limparCarrinho()">🗑️ Limpar Carrinho</button>
+    <button id="btn_red" onclick="window.location.href='index.html'">Voltar Início</button>
+  </section>
+
+    <section id="formulario">
+        <h2>📋 Dados de Entrega:</h2>
+        <form action="enviar.php" method="POST" onsubmit="return montarMensagem()">
+            <input type="text" name="nome" placeholder="Seu Nome" required>
+            <input type="text" name="telefone" placeholder="Telefone" required>
+            <input type="text" name="rua" placeholder="Rua" required>
+            <input type="text" name="numero" placeholder="Número" required>
+            <input type="text" name="bairro" placeholder="Bairro" required>
+            <input type="text" name="complemento" placeholder="Complemento">
+
+            <label for="pagamento">Forma de Pagamento:</label>
+            <select name="pagamento" id="pagamento" required>
+                <option value="" disabled selected>Escolha uma opção</option>
+                <option value="Cartão">💳 Cartão</option>
+                <option value="Dinheiro">💵 Dinheiro</option>
+                <option value="Pix">🔥 Pix</option>
+            </select>
+
+            <textarea id="pedidoFinal" name="pedido" placeholder="Seu pedido aparecerá aqui" readonly></textarea>
+
+            <button type="submit">📧 Finalizar o pedido</button>
+        </form>
+    </section>
+
+    <h1 id="pedido_gourmet">🍔 Lanches Gourmet</h1>
 
     <section id="cardapio">
         <div class="item">
@@ -56,7 +89,7 @@
         </div>
     </section>
 
-     <h1 id="pedido_gourmet">🍔 Lanches Tradicional - Faça seu Pedido</h1>
+     <h1 id="pedido_gourmet">🍔 Lanches Tradicional</h1>
 
      <section id="cardapio">
         <div class="item">
@@ -90,28 +123,63 @@
         </div>
     </section>
 
-      <h1 id="pedido_gourmet">🥔 Batatas Recheadas - Faça seu Pedido</h1>
+      
+     <h1 id="pedido_gourmet">🍾 Bebidas </h1>
 
     <section id="cardapio">
         <div class="item">
-            <img src="imagens/bacon.jpg" alt="Hambúrguer Clássico">
-            <h3>Hambúrguer Clássico - R$ 20,00</h3>
-            <button onclick="adicionar('Hambúrguer Clássico', 20)">Adicionar</button>
+            <img src="assets/img/events/coca.png" alt="Hambúrguer Clássico">
+            <h3>Coca-Cola-Lata - R$ 6,00</h3>
+            <button onclick="adicionar('Coca-Cola-Lata', 6)">Adicionar</button>
         </div>
 
         <div class="item">
-            <img src="imagens/especial.jpg" alt="Cheddar Bacon">
-            <h3>Cheddar Bacon - R$ 25,00</h3>
-            <button onclick="adicionar('Cheddar Bacon', 25)">Adicionar</button>
+            <img src="assets/img/events/fanta.png" alt="Cheddar Bacon">
+            <h3>Fanta-Lata -  R$ 6,00</h3>
+            <button onclick="adicionar('Fanta-Lata', 6)">Adicionar</button>
         </div>
 
         <div class="item">
-            <img src="imagens/caseiro.jpg" alt="Batata Frita">
-            <h3>Batata Frita - R$ 10,00</h3>
-            <button onclick="adicionar('Batata Frita', 10)">Adicionar</button>
+            <img src="assets/img/events/guarana.png" alt="Batata Frita">
+            <h3>Guarana-Lata - R$ 6,00</h3>
+            <button onclick="adicionar('Guarana-Lata', 6)">Adicionar</button>
         </div>
 
         <div class="item">
+            <img src="assets/img/events/coca2litro.jpg" alt="Combo Burger + Refri">
+            <h3>Coca-Cola-2 LITROS - R$ 15,00</h3>
+            <button onclick="adicionar('Coca-Cola-2 litros', 15)">Adicionar</button>
+        </div>
+<!-- 
+        <div class="item">
+            <img src="imagens/egg.jpg" alt="Refrigerante">
+            <h3>Refrigerante - R$ 5,00</h3>
+            <button onclick="adicionar('Refrigerante', 5)">Adicionar</button>
+        </div> -->
+    </section>
+
+    <h1 id="pedido_gourmet">🥔 Batatas Recheadas </h1>
+
+    <section id="cardapio">
+        <div class="item">
+            <img src="assets/img/banner-grid/batata1.jpg" alt="Hambúrguer Clássico">
+            <h3>Batata-Calabresa - R$25,00</h3>
+            <button onclick="adicionar('BATATA-CALABRESA', 25)">Adicionar</button>
+        </div>
+
+        <div class="item">
+            <img src="assets/img/banner-grid/batata2.jpg" alt="Cheddar Bacon">
+            <h3>Batata-Pizza - R$ 25,00</h3>
+            <button onclick="adicionar('BATATA-PRESUNTO-MUSSARELA', 25)">Adicionar</button>
+        </div>
+
+        <div class="item">
+            <img src="assets/img/banner-grid/batata3.jpeg" alt="Batata Frita">
+            <h3>Batata-Hot-Dog - R$20,00</h3>
+            <button onclick="adicionar('BATATA-HOT-DOG', 20)">Adicionar</button>
+        </div>
+
+        <!-- <div class="item">
             <img src="imagens/caseirobacon.jpg" alt="Combo Burger + Refri">
             <h3>Combo Burger + Refri - R$ 30,00</h3>
             <button onclick="adicionar('Combo Burger + Refri', 30)">Adicionar</button>
@@ -121,31 +189,32 @@
             <img src="imagens/egg.jpg" alt="Refrigerante">
             <h3>Refrigerante - R$ 5,00</h3>
             <button onclick="adicionar('Refrigerante', 5)">Adicionar</button>
-        </div>
+        </div> -->
     </section>
 
-     <h1 id="pedido_gourmet">🍾 Bebidas - Faça seu Pedido</h1>
+
+    <h1 id="pedido_gourmet">🧇 Waffles Belga</h1>
 
     <section id="cardapio">
         <div class="item">
-            <img src="imagens/bacon.jpg" alt="Hambúrguer Clássico">
-            <h3>Hambúrguer Clássico - R$ 20,00</h3>
-            <button onclick="adicionar('Hambúrguer Clássico', 20)">Adicionar</button>
+            <img src="assets/img/banner-grid/waffle1.jpg" alt="Hambúrguer Clássico">
+            <h3>Waffle-Doce-Leite - R$15,00</h3>
+            <button onclick="adicionar('WAFFLE-DOCE-LEITE', 15)">Adicionar</button>
         </div>
 
         <div class="item">
-            <img src="imagens/especial.jpg" alt="Cheddar Bacon">
-            <h3>Cheddar Bacon - R$ 25,00</h3>
-            <button onclick="adicionar('Cheddar Bacon', 25)">Adicionar</button>
+            <img src="assets/img/banner-grid/waffle2.jpg" alt="Cheddar Bacon">
+            <h3>Waffle-Kit-Kat - R$18,90</h3>
+            <button onclick="adicionar('WAFFLE-KIT-KAT', 18,90)">Adicionar</button>
         </div>
 
         <div class="item">
-            <img src="imagens/caseiro.jpg" alt="Batata Frita">
-            <h3>Batata Frita - R$ 10,00</h3>
-            <button onclick="adicionar('Batata Frita', 10)">Adicionar</button>
+            <img src="assets/img/banner-grid/waffle3.jpg" alt="Batata Frita">
+            <h3>Waffle-Galak - R$18,90</h3>
+            <button onclick="adicionar('WAFFLE-GALAK', 18,90)">Adicionar</button>
         </div>
 
-        <div class="item">
+        <!-- <div class="item">
             <img src="imagens/caseirobacon.jpg" alt="Combo Burger + Refri">
             <h3>Combo Burger + Refri - R$ 30,00</h3>
             <button onclick="adicionar('Combo Burger + Refri', 30)">Adicionar</button>
@@ -155,45 +224,11 @@
             <img src="imagens/egg.jpg" alt="Refrigerante">
             <h3>Refrigerante - R$ 5,00</h3>
             <button onclick="adicionar('Refrigerante', 5)">Adicionar</button>
-        </div>
-    </section>
-
-    <h1 id="pedido_gourmet">🧇 Waffles - Faça seu Pedido</h1>
-
-    <section id="cardapio">
-        <div class="item">
-            <img src="imagens/bacon.jpg" alt="Hambúrguer Clássico">
-            <h3>Hambúrguer Clássico - R$ 20,00</h3>
-            <button onclick="adicionar('Hambúrguer Clássico', 20)">Adicionar</button>
-        </div>
-
-        <div class="item">
-            <img src="imagens/especial.jpg" alt="Cheddar Bacon">
-            <h3>Cheddar Bacon - R$ 25,00</h3>
-            <button onclick="adicionar('Cheddar Bacon', 25)">Adicionar</button>
-        </div>
-
-        <div class="item">
-            <img src="imagens/caseiro.jpg" alt="Batata Frita">
-            <h3>Batata Frita - R$ 10,00</h3>
-            <button onclick="adicionar('Batata Frita', 10)">Adicionar</button>
-        </div>
-
-        <div class="item">
-            <img src="imagens/caseirobacon.jpg" alt="Combo Burger + Refri">
-            <h3>Combo Burger + Refri - R$ 30,00</h3>
-            <button onclick="adicionar('Combo Burger + Refri', 30)">Adicionar</button>
-        </div>
-
-        <div class="item">
-            <img src="imagens/egg.jpg" alt="Refrigerante">
-            <h3>Refrigerante - R$ 5,00</h3>
-            <button onclick="adicionar('Refrigerante', 5)">Adicionar</button>
-        </div>
+        </div> -->
     </section>
 
 
-     <section id="carrinho">
+     <!-- <section id="carrinho">
     <h2>🛒 Carrinho</h2>
     <ul id="lista"></ul>
     <p id="valor_resumo"><strong>Total: R$ <span id="total">3.00</span></strong></p>
@@ -224,7 +259,7 @@
 
             <button type="submit">📧 Finalizar o pedido</button>
         </form>
-    </section>
+    </section> -->
 
 
     <script src="assets/js/script.js"></script>

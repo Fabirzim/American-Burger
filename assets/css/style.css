@@ -1026,13 +1026,13 @@ margin-bottom: -100px;
 }
 
 .banner-grid-image {
-    width: 100%;
-    height:300px;
+    width: 400px;
+    height:400px;
     -o-object-fit: cover;
     object-fit: cover;
     -webkit-border-radius: 12px;
     border-radius: 12px;
-    -webkit-transition: -webkit-transform .3s ease-in-out;
+    -webkit-transition: -webkit-transform .4s ease-in-out;
     transition: -webkit-transform .3s ease-in-out;
     -o-transition: transform .3s ease-in-out;
     transition: transform .3s ease-in-out;

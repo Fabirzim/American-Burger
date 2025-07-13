@@ -249,3 +249,5 @@ function montarMensagem() {
 
 // Carrega carrinho salvo ao abrir página
 document.addEventListener("DOMContentLoaded", atualizarCarrinho);
+
+

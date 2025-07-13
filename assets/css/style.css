@@ -269,7 +269,7 @@ strong {
 }
 
 .section-title {
-    font-size: 50px;
+    font-size: 45px;
     font-weight: 500;
     font-family: 'Alfa Slab One', sans-serif;
     text-transform: uppercase;
@@ -892,7 +892,7 @@ footer:after {
 }
 
 .banner-title {
-    font-size: 94px;
+    font-size: 74px;
     font-weight: 500;
     font-family: 'Alfa Slab One', sans-serif;
     display: -webkit-box;
@@ -3729,4 +3729,5 @@ form input, form textarea, form select {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+
 

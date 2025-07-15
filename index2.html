@@ -11,7 +11,7 @@
         body {
             margin: 0;
             padding: 0;
-            /* background-image: url('imagens/xxx.png'); */
+            background-image: url('imagens/xxx.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -23,7 +23,7 @@
 <body>
 
      <section id="carrinho">
-    <h2>🛒 Pedidos</h2>
+    <h2 id="carrinho_pedidos">🛒 Pedidos</h2>
     <ul id="lista"></ul>
     <p id="valor_resumo"><strong>Total: R$ <span id="total">3.00</span></strong></p>
     <p><strong>VALOR DA ENTREGA <span>R$ 3.00 JÁ ADICIONADO NO PEDIDO TOTAL</span></strong></p>
@@ -251,6 +251,41 @@
             <button onclick="adicionar('Refrigerante', 5)">Adicionar</button>
         </div> -->
     </section>
+
+     <footer id="contact">
+        <div class="footer-top">
+            <div class="footer-logo">
+                <!--<img src="assets/img/logo-footer.png" alt="" />-->
+                <img id="american" src="assets/img/american.png" alt="" />
+                <span>American Burger</span>
+            </div>
+        </div>
+        <div class="footer-middle">
+            <p class="footer-desc">AMERICAN BURGER — FAZEMOS LANCHES COM QUALIDADE. PEÇA JÁ O SEU! ENTREGAMOS EM SUA CASA. TAXA DE ENTREGA: R$ 3,00. </p>
+            <div class="footer-contact">
+                <div class="footer-contact-item">
+                    <img src="assets/img/icons/location.svg" alt="" class="footer-contact-icon" />
+                    <a class="footer-contact-text" data-fancybox="" data-src="#map-popup" onclick="$.fancybox.close()"
+                        href="javascript:;">São José do Rio Pardo-Sp</a>
+                </div>
+                <!--<div class="footer-contact-item">
+                    <img src="assets/img/icons/email.svg" alt="" class="footer-contact-icon" />
+                    <a href="mailto:info@companyname.com" class="footer-contact-text">.</a>
+                </div>-->
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">RIO PARDO SISTEMAS TECNOLÓGICOS — DESENVOLVIMENTO DE SITES E SISTEMAS.
+CONTATO: (19) 99585-6800 | TODOS OS DIREITOS RESERVADOS.</p>
+            <div class="footer-social">
+                <a href="" class="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="" class="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://web.whatsapp.com/send?phone=+19995856800&text=Hello Burger House ✋&source&data&app_absent"
+                    target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
 
 
      <!-- <section id="carrinho">

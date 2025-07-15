@@ -166,11 +166,53 @@ function salvarCarrinho() {
 
 // Adiciona item ao carrinho
 function adicionar(item, preco) {
-  carrinho.push({ item, preco });
+  const index = carrinho.findIndex(i => i.item === item);
+  if (index !== -1) {
+    carrinho[index].quantidade += 1;
+  } else {
+    carrinho.push({ item, preco, quantidade: 1 });
+  }
+
   total += preco;
   salvarCarrinho();
   atualizarCarrinho();
-  alert('✅ Item adicionado!');
+
+  // MOSTRA A MENSAGEM "ADICIONADO!" NO CENTRO DA TELA
+  const mensagem = document.createElement("div");
+  mensagem.textContent = "Adicionado!";
+  mensagem.style.position = "fixed";
+  mensagem.style.top = "50%";
+  mensagem.style.left = "50%";
+  mensagem.style.transform = "translate(-50%, -50%)";
+  mensagem.style.backgroundColor = "#4CAF50";
+  mensagem.style.color = "#fff";
+  mensagem.style.padding = "20px 40px";
+  mensagem.style.fontSize = "20px";
+  mensagem.style.borderRadius = "10px";
+  mensagem.style.boxShadow = "0 0 15px rgba(0, 0, 0, 0.4)";
+  mensagem.style.zIndex = "9999";
+  mensagem.style.textAlign = "center";
+  document.body.appendChild(mensagem);
+
+  setTimeout(() => {
+    mensagem.remove();
+  }, 2000);
+}
+
+// Remove uma unidade do item
+function remover(item) {
+  const index = carrinho.findIndex(i => i.item === item);
+  if (index !== -1) {
+    total -= carrinho[index].preco;
+    carrinho[index].quantidade -= 1;
+
+    if (carrinho[index].quantidade <= 0) {
+      carrinho.splice(index, 1);
+    }
+
+    salvarCarrinho();
+    atualizarCarrinho();
+  }
 }
 
 // Atualiza visual do carrinho
@@ -180,7 +222,11 @@ function atualizarCarrinho() {
     lista.innerHTML = '';
     carrinho.forEach(i => {
       const li = document.createElement('li');
-      li.textContent = `${i.item} - R$ ${i.preco.toFixed(2).replace('.', ',')}`;
+      li.innerHTML = `
+        ${i.item} - R$ ${i.preco.toFixed(2).replace('.', ',')} x ${i.quantidade}
+        <button onclick="adicionar('${i.item}', ${i.preco})">+</button>
+        <button onclick="remover('${i.item}')">−</button>
+      `;
       lista.appendChild(li);
     });
   }
@@ -211,7 +257,7 @@ function limparCarrinho() {
 function gerarMensagem() {
   let mensagem = `*Pedido American Burguer*\n\n`;
   carrinho.forEach(i => {
-    mensagem += `🍔 ${i.item} - R$ ${i.preco.toFixed(2).replace('.', ',')}\n`;
+    mensagem += `🍔 ${i.item} x ${i.quantidade} - R$ ${(i.preco * i.quantidade).toFixed(2).replace('.', ',')}\n`;
   });
 
   mensagem += `\n🚚 Entrega: R$ 3,00`;
@@ -237,17 +283,15 @@ function montarMensagem() {
   mensagem += `📍 Endereço: ${rua}, ${numero}, ${bairro} ${complemento ? '- ' + complemento : ''}\n`;
   mensagem += `💳 Pagamento: ${pagamento}`;
 
-  const numeroWhatsApp = "5519995856800"; // Altere conforme seu número
+  const numeroWhatsApp = "5519995856800";
   const link = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
   window.open(link, "_blank");
 
-  // 🧹 Limpa o carrinho após envio
   limparCarrinho();
 
-  return false; // Impede envio padrão do form
+  return false;
 }
 
 // Carrega carrinho salvo ao abrir página
 document.addEventListener("DOMContentLoaded", atualizarCarrinho);
-
 

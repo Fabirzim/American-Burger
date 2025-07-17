@@ -295,3 +295,11 @@ function montarMensagem() {
 // Carrega carrinho salvo ao abrir página
 document.addEventListener("DOMContentLoaded", atualizarCarrinho);
 
+
+ function rolarParaPedidos() {
+    const lista = document.getElementById('lista');
+    if (lista) {
+      lista.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+

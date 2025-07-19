@@ -172,12 +172,21 @@
             <h3>Coca-Cola-2 LITROS - R$ 15,00</h3>
             <button onclick="adicionar('Coca-Cola-2 litros', 15)">Adicionar</button>
         </div>
+<div class="item">
+    <img src="assets/img/events/laranja.jpg" alt="Combo Burger + Refri">
+    <h3>Suco-Laranja-500ml-100% NATURAL - R$ 15,00</h3>
 
-        <div class="item">
-            <img src="assets/img/events/laranja.jpg" alt="Combo Burger + Refri">
-            <h3>Suco-Laranja-500ml - R$ 15,00</h3>
-            <button onclick="adicionar('SUCO-LARANJA-500ML', 15)">Adicionar</button>
-        </div>
+    <!-- Opções -->
+    <div>
+        <label><input type="checkbox" name="opcao-laranja" value="com açúcar"> Com Açúcar</label><br>
+        <label><input type="checkbox" name="opcao-laranja" value="sem açúcar"> Sem Açúcar</label><br>
+        <label><input type="checkbox" name="opcao-laranja" value="com gelo"> Com Gelo</label>
+    </div>
+
+    <!-- Botão Adicionar -->
+    <button onclick="adicionarLaranja()">Adicionar</button>
+</div>
+
 <!-- 
         <div class="item">
             <img src="imagens/egg.jpg" alt="Refrigerante">
@@ -236,6 +245,42 @@
             <button onclick="adicionar('Refrigerante', 5)">Adicionar</button>
         </div> -->
     </section>
+
+    
+    <h1 id="pedido_gourmet">🧇 Combos</h1>
+
+    <section id="cardapio">
+        <div class="item">
+            <img src="assets/img/banner-grid/combo1.png" alt="Hambúrguer Clássico">
+            <h3>2-X-SALADAS-GOURMET + 1 COCA 2 LITROS + FRITAS</h3>
+            <button onclick="adicionar('COMBO-ONE',72)">Adicionar</button>
+        </div>
+
+        <div class="item">
+            <img src="assets/img/banner-grid/combotwo.png" alt="Cheddar Bacon">
+            <h3>2-X-BACON-GOURMET + 1 COCA 2 LITROS + FRITAS</h3>
+            <button onclick="adicionar('COMBO-TWO', 82)">Adicionar</button>
+        </div>
+
+        <div class="item">
+            <img src="assets/img/banner-grid/combothree.png" alt="Batata Frita">
+            <h3>2-X-BACON-GOURMET + FRITAS</h3>
+            <button onclick="adicionar('COMBO-THREE', 67)">Adicionar</button>
+        </div>
+
+        <div class="item">
+            <img src="assets/img/banner-grid/combofour.png" alt="Combo Burger + Refri">
+            <h3>2-X-SALADA-GOURMET + FRITAS</h3>
+            <button onclick="adicionar('COMBO-FOUR', 57)">Adicionar</button>
+        </div>
+
+      <!--    <div class="item">
+            <img src="imagens/egg.jpg" alt="Refrigerante">
+            <h3>Refrigerante - R$ 5,00</h3>
+            <button onclick="adicionar('Refrigerante', 5)">Adicionar</button>
+        </div> -->
+    </section>
+
 
 
     <h1 id="pedido_gourmet">🧇 Waffles Belga</h1>

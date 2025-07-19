@@ -283,7 +283,7 @@ function montarMensagem() {
   mensagem += `📍 Endereço: ${rua}, ${numero}, ${bairro} ${complemento ? '- ' + complemento : ''}\n`;
   mensagem += `💳 Pagamento: ${pagamento}`;
 
-  const numeroWhatsApp = "5519995856800";
+  const numeroWhatsApp = "5519988296715";
   const link = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
   window.open(link, "_blank");
 
@@ -302,4 +302,20 @@ document.addEventListener("DOMContentLoaded", atualizarCarrinho);
       lista.scrollIntoView({ behavior: 'smooth' });
     }
   }
+
+
+function adicionarLaranja() {
+    const checkboxes = document.querySelectorAll('input[name="opcao-laranja"]:checked');
+    let opcoesSelecionadas = Array.from(checkboxes).map(cb => cb.value).join(", ");
+
+    if (opcoesSelecionadas === "") {
+        opcoesSelecionadas = "sem opção";
+    }
+
+    const item = `SUCO-LARANJA-500ML-100% NATURAL (${opcoesSelecionadas})`;
+    const preco = 15;
+
+    adicionar(item, preco);
+}
+
 
